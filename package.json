@@ -1,8 +1,8 @@
 {
-  "name": "easycode",
-	"displayName": "easyCode",
+	"name": "myeasycode",
+	"displayName": "myEasyCode",
 	"description": "easy for code",
-	"version": "0.0.1",
+	"version": "0.0.3",
 	"engines": {
 		"vscode": "^1.65.0"
 	},
@@ -10,22 +10,51 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:easycode.helloWorld"
+		"onCommand:easycode.autoPaste",
+		"onCommand:easycode.autoCopy",
+		"onView:nodeDependencies"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "easycode.helloWorld",
+				"command": "easycode.autoPaste",
 				"title": "Hello World",
 				"tooltip": "abc"
 			},
 			{
-				"command": "easycode.test",
+				"command": "easycode.autoCopy",
 				"title": "First Test"
 			}
-		]
+		],
+		"keybindings":[
+			{
+				"command": "easycode.autoCopy",
+				"key": "ctrl+alt+c"
+			},
+			{
+				"command": "easycode.autoPaste",
+				"key": "ctrl+alt+v"
+			}
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "easycode.autoCopy",
+					"when": "editorLangId == markdown"
+				}
+			]
+		},
+		"views": {
+			"explorer": [
+				{
+					"id": "nodeDependencies",
+					"name": "Node Dependencies"
+				}
+			]
+		}
 	},
+	"publisher": "dty717",
 	"scripts": {
 		"vscode:prepublish": "npm run package",
 		"compile": "webpack",
@@ -52,5 +81,9 @@
 		"ts-loader": "^9.2.2",
 		"webpack": "^5.38.1",
 		"webpack-cli": "^4.7.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/dty717/easyCode"
 	}
 }
